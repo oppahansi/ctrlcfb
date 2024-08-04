@@ -11,13 +11,17 @@ and displays `Copied!` right above the mouse cursor.
 * Download the latest release
   * or compile the app yourself using maven
 * Extract the archive to a permanent location
-  * if you compiled yourself, move the `start-ctrlcfb.bat` the the compiled jar file 
+  * if you compiled yourself, move the `start-ctrlcfb.bat / start-ctrlcfb.sh` the the compiled jar file 
 
 ### Running (manually)
-* Start the app by running the `start-ctrlcfb.bat`
+* Start the app by running the `start-ctrlcfb.bat / start-ctrlcfb.sh`
   * it is possible that the name in the start script does not match the .jar file, in that case, adjust the filename inside the start script
   
 ### Running when Windows starts
 * Create a shortcut for `start-ctrlcfb.bat`
 * Put the shortcut into your StartUp folder
   * [StartUp Folder Location](https://www.intowindows.com/location-of-the-startup-folder-in-windows-10/)
+
+### Running when Linux starts
+* Not yet sure how you could add it to startup.
+   * Let me know if you have an idea. 
