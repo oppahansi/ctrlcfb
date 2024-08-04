@@ -2,6 +2,7 @@ package de.oppahansi;
 
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.NativeInputEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
@@ -43,7 +44,7 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
   }
 
   public void nativeKeyPressed(NativeKeyEvent e) {
-    if (e.getKeyCode() == 46 && this.isOnlyCtrlPressed(e)) {
+    if (e.getKeyCode() == NativeKeyEvent.VC_C && this.isOnlyCtrlPressed(e)) {
       this.showPopupMessage();
     }
   }
@@ -56,7 +57,12 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
   }
 
   private boolean isOnlyCtrlPressed(NativeKeyEvent e) {
-    return e.getModifiers() == 34 || e.getModifiers() == 2 || e.getModifiers() == 32;
+    return e.getModifiers() == NativeInputEvent.CTRL_L_MASK
+        || e.getModifiers() == NativeInputEvent.CTRL_MASK
+        || e.getModifiers() == NativeInputEvent.CTRL_R_MASK
+        || e.getModifiers() - NativeInputEvent.NUM_LOCK_MASK == NativeInputEvent.CTRL_L_MASK
+        || e.getModifiers() - NativeInputEvent.NUM_LOCK_MASK == NativeInputEvent.CTRL_MASK
+        || e.getModifiers() - NativeInputEvent.NUM_LOCK_MASK == NativeInputEvent.CTRL_R_MASK;
   }
 
   private void showPopupMessage() {
@@ -77,6 +83,7 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
     popupFrame.setLocation(
         mouseLocation.x - popupFrame.getWidth() / 2, mouseLocation.y - popupFrame.getHeight() - 10);
     popupFrame.setVisible(true);
+
     closeTimer =
         new Timer(
             3000,
@@ -89,20 +96,24 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
 
   private static JFrame initPopupFrame() {
     JFrame popupFrame = new JFrame();
+
     popupFrame.setUndecorated(true);
     popupFrame.setType(Type.UTILITY);
     popupFrame.setLayout(new BorderLayout());
     popupFrame.setSize(new Dimension(75, 25));
     popupFrame.setAlwaysOnTop(true);
     popupFrame.setBackground(new Color(0, 0, 0, 0));
+
     return popupFrame;
   }
 
   private static OutlineLabel initOutlineLabel() {
     OutlineLabel label = new OutlineLabel("Copied!", 0, 3);
+
     label.setForeground(Color.WHITE);
     label.setOpaque(false);
     label.setOutlineColor(Color.BLACK);
+
     return label;
   }
 }
