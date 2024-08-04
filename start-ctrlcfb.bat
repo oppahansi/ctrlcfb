@@ -1,0 +1,1 @@
+start javaw -Xms64M -Xmx64M -jar ctrlcfb-1.0-SNAPSHOT-jar-with-dependencies.jar
