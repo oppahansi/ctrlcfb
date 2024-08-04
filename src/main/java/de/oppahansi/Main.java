@@ -26,9 +26,7 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
   public static void main(String[] args) {
     try {
       GlobalScreen.registerNativeHook();
-    } catch (NativeHookException var2) {
-      NativeHookException ex = var2;
-      System.err.println("There was a problem registering the native hook.");
+    } catch (NativeHookException ex) {
       System.err.println(ex.getMessage());
       System.exit(1);
     }
@@ -46,7 +44,6 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
 
   public void nativeKeyPressed(NativeKeyEvent e) {
     if (e.getKeyCode() == 46 && this.isOnlyCtrlPressed(e)) {
-      System.out.println("Ctrl + C pressed");
       this.showPopupMessage();
     }
   }
@@ -84,7 +81,6 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
         new Timer(
             3000,
             (e) -> {
-              System.out.println("Close popup");
               popupFrame.setVisible(false);
             });
     closeTimer.setRepeats(false);
