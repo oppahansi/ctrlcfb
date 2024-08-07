@@ -86,7 +86,7 @@ public class Main implements NativeKeyListener, NativeMouseMotionListener {
 
     closeTimer =
         new Timer(
-            3000,
+            1000,
             (e) -> {
               popupFrame.setVisible(false);
             });
