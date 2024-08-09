@@ -6,10 +6,8 @@ import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,8 +47,8 @@ public class CtrlCFeedbackTest {
 
   @Test
   public void testNativeMouseMoved() {
-    int expectedLocationX = 63;
-    int expectedLocationY = 65;
+    var expectedLocationX = 63;
+    var expectedLocationY = 65;
     var mockEvent = mock(NativeMouseEvent.class);
 
     when(mockEvent.getX()).thenReturn(100);
