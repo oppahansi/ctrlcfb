@@ -43,7 +43,6 @@ public class CtrlCFeedback implements NativeKeyListener, NativeMouseMotionListen
 
   @Override
   public void nativeKeyPressed(NativeKeyEvent e) {
-    System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
     if (e.getKeyCode() == NativeKeyEvent.VC_C && this.isOnlyCtrlPressed(e)) {
       this.showPopupMessage();
     }
